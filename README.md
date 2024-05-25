@@ -14,4 +14,8 @@ The purpose of this simple project was to gain some basic familiarity with Power
 
 
 ## Remarks
-Compared to ShinyDashboards, the streamlined process with PowerBI is very nice but looking at the DAX and PowerQuery
+Compared to ShinyDashboards, the streamlined process with PowerBI is very nice but looking at the DAX and PowerQuery options doesn't make me too excited. Also, 
+
+
+
+<iframe title="food_imports" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiODBmMjI3N2QtNmZhMy00Nzc3LWEyOTMtOTE1YmVkOGYwZmUzIiwidCI6ImQxNzU2NzliLWFjZDMtNDY0NC1iZTgyLWFmMDQxOTgyOTc3YSIsImMiOjZ9" frameborder="0" allowFullScreen="true"></iframe>
