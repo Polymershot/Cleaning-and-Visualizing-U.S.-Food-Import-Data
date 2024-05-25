@@ -16,7 +16,7 @@ The purpose of this simple project was to gain some basic familiarity with Power
 > https://app.powerbi.com/view?r=eyJrIjoiODBmMjI3N2QtNmZhMy00Nzc3LWEyOTMtOTE1YmVkOGYwZmUzIiwidCI6ImQxNzU2NzliLWFjZDMtNDY0NC1iZTgyLWFmMDQxOTgyOTc3YSIsImMiOjZ9
 
 ## Remarks
-Compared to ShinyDashboards, the streamlined process with PowerBI is very nice but looking at the DAX and PowerQuery options doesn't make me too excited. Also, if I were to work more with this data, I would have looked into more of the patterns/relationships between the countries and the different import types. However, for the most part, the data mainly serves as a descriptive source.
+For the first graphic, it will automatically default to all countries after selecting a import type. This means that the graph will produce an average amount for all the countries. To select a single country, just click on the appropriate dot. Compared to ShinyDashboards, the streamlined process with PowerBI is very nice but looking at the DAX and PowerQuery options doesn't make me too excited. Also, if I were to work more with this data, I would have looked into more of the patterns/relationships between the countries and the different import types. However, for the most part, the data mainly serves as a descriptive source.
 
 
 
