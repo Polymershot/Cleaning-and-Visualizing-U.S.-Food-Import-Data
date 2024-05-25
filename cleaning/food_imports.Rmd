@@ -1,0 +1,116 @@
+---
+title: "Food Data"
+author: "Randy Neou"
+date: "2024-05-21"
+output: html_document
+---
+
+# Import
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+# Clean Data
+
+```{r}
+
+#Turn each excel sheet into a dataframe
+read_excel_allsheets <- function(filename, tibble = TRUE) {
+  sheets <- readxl::excel_sheets(filename)
+  x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+  if(!tibble) x <- lapply(x, as.data.frame)
+  names(x) <- sheets
+  x
+}
+
+#Call the function
+mysheets <- read_excel_allsheets("C:/Users/rdn91/OneDrive/Desktop/Coding/PowerBI_Tableau/FoodImports (1).xlsx")
+
+#Get rid of the sheets I'm not interested in
+mysheets <- mysheets[2:20]
+
+#Create Year columns
+mysheets <- lapply(mysheets, function(x) {
+  x %>% row_to_names(row_number=3)
+})
+
+#Rename other columns (Countries, Food Type, Units)
+mysheets <- lapply(mysheets, function(x) {
+  
+  if (all(is.na(colnames(x)[0:4]))) {
+    colnames(x)[0:4] <- c("group", "index", "country", "units")
+  }
+  
+  else if (all(is.na(colnames(x)[0:3]))) {
+    colnames(x)[0:3] <- c("group", "type", "units")
+  }
+  return(x)
+})
+
+#Delete index variable
+mysheets <- lapply(mysheets, function(x) {
+  
+  if ("index" %in% names(x)) {
+    x$index <- NULL
+  }
+  return(x)
+  
+})
+
+#Delete empty rows
+mysheets <- lapply(mysheets, function(x) {
+  x %>% filter_all(any_vars(!is.na(.)))
+})
+
+
+#Fill na values for group variable
+mysheets <- lapply(mysheets, function(x) {
+  x %>% fill(group)
+})
+
+if ("1999" %in% names(mysheets[[1]])) {
+  print(1)
+}
+
+#Check what tables have NA's for the years
+col_list <- as.character(2023:2000)
+lapply(mysheets, function(x) {
+  all(col_list %in% names(x))
+})
+
+
+#Add 1999 column to FoodValue% for easier cleaning
+mysheets[[2]] <- mysheets[[2]] %>% mutate(`1999` = NA)
+mysheets[[4]] <- mysheets[[4]] %>% mutate(`1999` = NA)
+
+#Delete footnotes
+col_list <- as.character(2023:2000)
+mysheets <- lapply(mysheets, function(x) {
+  x <- x[complete.cases(x[col_list]),]
+})
+
+#Wide Data to Long-form data
+col_list <- as.character(2023:1999)
+mysheets <- lapply(mysheets, function(x) {
+  x %>% pivot_longer(cols = col_list, names_to = "year", values_to = "amount")
+})
+
+
+#Remove slashes from group, country, units, type
+mysheets <- lapply(mysheets, function(x) {
+  x %>% mutate(across(1:3, ~str_replace_all(., "\\d+/", "")))  #d+ specifies multiple digits before forward slash; double backward slash used as escape character
+  
+})
+
+```
+# Export Dataframes
+
+
+``` {r}
+
+#lapply(names(mysheets), function(x) {write.csv(mysheets[[x]], file = paste0("data/", x, ".csv"))})
+
+
+```
