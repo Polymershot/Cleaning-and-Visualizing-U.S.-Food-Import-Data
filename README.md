@@ -4,7 +4,8 @@
 > https://catalog.data.gov/dataset/u-s-food-imports
 
 ## Purpose
-The purpose of this simple project was to gain some basic familiarity with PowerBI and gain some experience with cleaning Excel files with multiple sheets. After pulling the sheets into R, I had to deal with formatting issues like improper column names, symbols in text, wide-form data, and missing values. 
+The purpose of this simple project was to display general info such as how U.S. food imports vary across time and what the tiop importers are for certain food types. After pulling the sheets into R, I had to deal with formatting issues like improper column names, symbols in text, wide-form data, and missing values. 
+
 
 ## Example
 ![image](https://github.com/Polymershot/Cleaning-and-Visualizing-U.S.-Food-Import-Data/assets/69413289/79da1f6f-282a-4fee-bb7a-574140b76bc0)
